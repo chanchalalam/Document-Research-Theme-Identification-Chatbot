@@ -1,0 +1,2 @@
+The second document discusses bananas and grapes.
+Vector databases are useful for AI applications.

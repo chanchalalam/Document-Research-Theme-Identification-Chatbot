@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Research Chatbot</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
+        .container { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: #333; }
+        .section { margin-bottom: 30px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="file"], input[type="text"], button { padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ccc; }
+        input[type="file"] { width: calc(100% - 22px); }
+        input[type="text"] { width: calc(100% - 100px); }
+        button { background-color: #007bff; color: white; cursor: pointer; border: none; }
+        button:hover { background-color: #0056b3; }
+        .file-list ul { list-style-type: none; padding: 0; }
+        .file-list li { background-color: #e9e9e9; margin-bottom: 5px; padding: 8px; border-radius: 3px; }
+        .query-result { margin-top: 20px; padding: 15px; background-color: #f9f9f9; border: 1px solid #eee; border-radius: 5px; }
+        .query-result pre { white-space: pre-wrap; word-wrap: break-word; background-color: #fff; padding: 10px; border: 1px dashed #ccc; }
+        .doc-key li { font-size: 0.9em; color: #555; }
+        .flash-messages { list-style: none; padding: 0; }
+        .flash-messages .success { background-color: #d4edda; color: #155724; padding: 10px; margin-bottom:10px; border: 1px solid #c3e6cb; border-radius: 4px;}
+        .flash-messages .error { background-color: #f8d7da; color: #721c24; padding: 10px; margin-bottom:10px; border: 1px solid #f5c6cb; border-radius: 4px;}
+        .flash-messages .warning { background-color: #fff3cd; color: #856404; padding: 10px; margin-bottom:10px; border: 1px solid #ffeeba; border-radius: 4px;}
+        .flash-messages .info { background-color: #d1ecf1; color: #0c5460; padding: 10px; margin-bottom:10px; border: 1px solid #bee5eb; border-radius: 4px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Document Research & Theme Identification Chatbot</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% if not services_available %}
+            <p style="color: red; font-weight: bold;">ERROR: Core backend services (FAISS, LLM) could not be loaded. Functionality will be limited.</p>
+        {% endif %}
+
+        <div class="section">
+            <h2>1. Upload Documents</h2>
+            <form action="{{ url_for('upload_files') }}" method="post" enctype="multipart/form-data">
+                <label for="files">Select files (PDF, TXT, PNG, JPG):</label>
+                <input type="file" name="files[]" multiple required>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>2. Indexed Documents</h2>
+            <form action="{{ url_for('reindex_documents') }}" method="post" style="margin-bottom: 10px;">
+                <button type="submit">Re-Index All Documents</button>
+            </form>
+            {% if documents %}
+                <div class="file-list">
+                    <!-- <p>Currently {{ documents|length }} document source(s) appear in the index/log:</p> -->
+                    <!-- <ul>
+                        {% for doc in documents %}
+                            <li>{{ doc.name }}</li>
+                        {% endfor %}
+                    </ul> -->
+                </div>
+            {% else %}
+                <p>No documents currently indexed or found in logs. Upload some and click "Re-Index".</p>
+            {% endif %}
+        </div>
+
+        <div class="section">
+            <h2>3. Query Documents</h2>
+            <form action="{{ url_for('query_documents') }}" method="post">
+                <label for="query">Enter your query:</label>
+                <input type="text" name="query" id="query" style="width: 70%;" value="{{ last_query or '' }}" required>
+                <button type="submit">Search</button>
+            </form>
+
+            {% if last_query %}
+                <div class="query-result">
+                    <h3>Results for: "{{ last_query }}"</h3>
+                    {% if query_error %}
+                        <p style="color: orange;">Note: {{ query_error }}</p>
+                    {% endif %}
+
+                    {% if llm_response %}
+                        <h4>Synthesized Response (from LLM):</h4>
+                        <pre>{{ llm_response }}</pre>
+                        {% if doc_key %}
+                            <h5>Document Reference Key:</h5>
+                            <ul class="doc-key">
+                            {% for ref, source in doc_key.items() %}
+                                <li><strong>{{ ref }}:</strong> {{ source }}</li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% elif raw_faiss_results %}
+                         <h4>Retrieved Contexts (Raw from FAISS):</h4>
+                         {% for result in raw_faiss_results %}
+                            <p>
+                                <strong>Source:</strong> {{ result.source_doc }} (Chunk {{result.chunk_num_in_doc}}) <br>
+                                <strong>Text:</strong> {{ result.text[:250] | striptags | escape }}...
+                            </p>
+                         {% endfor %}
+                    {% elif not query_error %} <!-- No LLM response and no raw results and no error means no results -->
+                        <p>No information found for your query.</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

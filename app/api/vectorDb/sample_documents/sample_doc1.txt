@@ -1,0 +1,2 @@
+This is the first sample document. It talks about apples and oranges.
+FAISS is a library for efficient similarity search.

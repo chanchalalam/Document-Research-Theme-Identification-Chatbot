@@ -1,0 +1,134 @@
+{
+  "chunk_ids_list": [
+    "2b95abbd-a331-4b72-b40b-6b18641984eb",
+    "8f23f98c-6c26-4cba-b39e-32b9d72d3439",
+    "56e49ccc-57d6-4a3e-b65c-ceb42ef427cc",
+    "7f746186-4ac0-4fe2-837f-42dfa1fb0c21",
+    "dba45f47-a5a4-4fd5-88c5-11451b9bcb1d",
+    "bc923676-4e09-463d-b33b-49b5a1604fbb",
+    "9a9da22b-66ce-4bb3-9927-ce824ca342f9",
+    "6c7ea69f-9ba6-4109-90d8-a5c783a2438d",
+    "23fb2d8b-4a06-4e27-89aa-c5ca4259959b",
+    "9d443c3a-cfff-45b4-acde-bce16fe9e304",
+    "65dc6bfa-ee07-4121-bab4-c87a9d8ba4b4",
+    "af93919d-3a03-45c8-ba60-b2b7a3eb7bf7",
+    "339fbf90-4306-46d2-b029-3a7167a0f7b6",
+    "1c061691-a02a-40e5-8db0-016b2780e106",
+    "36a07871-0818-4aae-923f-e4ebb0afc638",
+    "5a74f595-a7fe-4d8a-ab8b-b9aa52f79f52"
+  ],
+  "metadata_store": {
+    "2b95abbd-a331-4b72-b40b-6b18641984eb": {
+      "text": "Chanchal Alam\nJalandhar, Punjab 144111\n\u2642phone+916203247467 /envel\u2322pechanchalalam00@gmail.com /linkedinlinked/chanchalalam /githubgithub/chanchalalam /kagglekaggle/chanchal24\nTechnical Skills\nProgramming Languages: Python, Java, R\nData Science and Machine Learning: Tableau, ML algorithms, TensorFlow, PyTorch, NLP, Deep Learning, OpenCV,\nMediapipe, Computer Vision, PySpark, Big Data, Large Language Models (LLMs), AI Chatbot\nDatabase: MySQL, MongoDB, Microsoft Excel, MS Project",
+      "source_doc": "Resumeoffcampus.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resumeoffcampus.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 1
+    },
+    "8f23f98c-6c26-4cba-b39e-32b9d72d3439": {
+      "text": "Other Technologies: Web Scraping, DSA, Hue, Figma, RapidMiner, Informatica Tools\nProjects\nYouTube Video to Detailed Notes Converter | Python, LLM Jan 2024\n\u2022 Developed an application using LLM and Gemini Pro Model API to automatically generate notes from YouTube video\ntranscripts.\n\u2022 Streamlined key insight extraction from lengthy videos, enhancing usability for students, researchers, and professionals.",
+      "source_doc": "Resumeoffcampus.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resumeoffcampus.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 2
+    },
+    "56e49ccc-57d6-4a3e-b65c-ceb42ef427cc": {
+      "text": "\u2022 Improved content consumption by providing concise, structured notes from video information, boosting user efficiency.\nQuora Text Classification | Python, NLP Nov 2023\n\u2022 Performed text preprocessing tokenization, stopword removal, lemmatization, stemming to ensure high-quality data for\nmachine learning workflows.\n\u2022 Transformed unstructured text into numerical vectors using TF-IDF and CountVectorizer for model accuracy.",
+      "source_doc": "Resumeoffcampus.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resumeoffcampus.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 3
+    },
+    "7f746186-4ac0-4fe2-837f-42dfa1fb0c21": {
+      "text": "\u2022 Identified actionable insights and key patterns, optimizing Quora\u2019s content discovery and information flow efficiency.\nMultiple Disease Detection Web Application | Python, Machine Learning, Deep Learning Sep 2023\n\u2022 Developed a web application capable of predicting multiple diseases, including Diabetes, Heart Disease, Kidney Disease,\nBreast Cancer, Liver Disease, Malaria, and Pneumonia.",
+      "source_doc": "Resumeoffcampus.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resumeoffcampus.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 4
+    },
+    "dba45f47-a5a4-4fd5-88c5-11451b9bcb1d": {
+      "text": "\u2022 Implemented machine learning models such as Logistic Regression, Decision Tree, SVM, KNN, Random Forest, and\nXGBoost to enhance prediction accuracy.\n\u2022 Integrated deep learning algorithms like Convolutional Neural Networks and pretrained models for advanced disease\ndetection.\nInternship\nCodersCave, Data Analyst Intern Oct 2023 \u2013 Nov 2023\nVirtual Internship Virtual\n\u2022 Worked on a breast cancer detection project using SVM, Logistic Regression, KNN, and Random Forest models.",
+      "source_doc": "Resumeoffcampus.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resumeoffcampus.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 5
+    },
+    "bc923676-4e09-463d-b33b-49b5a1604fbb": {
+      "text": "Achieved best accuracy of 98.24% using Logistic Regression.\n\u2022 Developed a Speech Emotion Recognition system using LSTM. Visualized audio data with wave plots and spectrograms,\nachieved 98% accuracy in emotion classification.\n\u2022 Worked on a Spam or Ham detection project using a pipeline with a vectorizer and Naive Bayes, achieved good accuracy.\nCertificates\nGenerative AI for Everyone, DeepLearning.AI May 2024\nData Analysis with Python, Jovian Jan 2024",
+      "source_doc": "Resumeoffcampus.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resumeoffcampus.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 6
+    },
+    "9a9da22b-66ce-4bb3-9927-ce824ca342f9": {
+      "text": "Data Analysis with Python, Jovian Jan 2024\nMachine Learning and Data Science Program, GeeksForGeeks Dec 2023\nIntroduction to Artificial Intelligence, Kaggle Nov 2023\nAchievements\nKaggle Notebook Master, ranking in the top 100 globally. Aug 2024\nCodeChef 3-star rating with a score of 1783. July 2024\nAchieved 58th rank globally in a CodeChef contest. June 2024\nEducation\nLovely Professional University Sep 2021 \u2013 July 2025",
+      "source_doc": "Resumeoffcampus.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resumeoffcampus.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 7
+    },
+    "6c7ea69f-9ba6-4109-90d8-a5c783a2438d": {
+      "text": "Bachelor of Technology in Data Science (Artificial Intelligence and Machine Learning) Phagwara, Punjab\nParamount Academy Muzaffarpur July 2018 \u2013 July 2020\nIntermediate (PCM) Muzaffarpur, Bihar",
+      "source_doc": "Resumeoffcampus.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resumeoffcampus.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 8
+    },
+    "23fb2d8b-4a06-4e27-89aa-c5ca4259959b": {
+      "text": "Chanchal Alam\nJalandhar, Punjab 144111\n\u2642phone+916203247467 /envel\u2322pechanchalalam00@gmail.com /linkedinlinked/chanchalalam /githubgithub/chanchalalam /kagglekaggle/chanchal24\nTechnical Skills\nProgramming Languages: Python, Java, R\nData Science and Machine Learning: Tableau, SQL, ML algorithms, NLP, TensorFlow, PyTorch, Deep Learning,\nComputer Vision, OpenCV, Mediapipe, Big Data, PySpark, Large Language Models (LLMs), AI Chatbot\nDatabase: MySQL, MongoDB, Microsoft Excel, MS Project, Power BI",
+      "source_doc": "Resume1.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resume1.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 1
+    },
+    "9d443c3a-cfff-45b4-acde-bce16fe9e304": {
+      "text": "Other Technologies: Web Scraping, DSA, Hive, Figma, RapidMiner, Informatica Tools, Flask, Django\nInternship\nCodersCave, Data Analyst Intern Oct 2023 \u2013 Nov 2023\nVirtual Internship Virtual\n\u2022 Worked on a breast cancer detection project using SVM, Logistic Regression, KNN, and Random Forest models.\nAchieved best accuracy of 98.24% using Logistic Regression.\n\u2022 Developed a Speech Emotion Recognition system using LSTM. Visualized audio data with wave plots and spectrograms,",
+      "source_doc": "Resume1.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resume1.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 2
+    },
+    "65dc6bfa-ee07-4121-bab4-c87a9d8ba4b4": {
+      "text": "achieved 98% accuracy in emotion classification.\n\u2022 Worked on a Spam or Ham detection project using a pipeline with a vectorizer and Naive Bayes, achieved good accuracy.\nProjects\nYouTube Video to Detailed Notes Converter | Python, LLM Jan 2024\n\u2022 Developed an application using LLM and Gemini Pro Model API key to automatically generate structured notes from\nYouTube video transcripts, enhancing usability for students and professionals.",
+      "source_doc": "Resume1.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resume1.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 3
+    },
+    "af93919d-3a03-45c8-ba60-b2b7a3eb7bf7": {
+      "text": "\u2022 Facilitated efficient extraction of key insights, improving content consumption and boosting user productivity.\nQuora Text Classification | Python, NLP Nov 2023\n\u2022 Performed data cleaning and text preprocessing using NLTK, including stop word removal, tokenization, stemming, and\nlemmatization to ensure high-quality data for machine learning workflows.\n\u2022 Created a vocabulary and converted text into numerical representations using TF-IDF and CountVectorizer for machine\nlearning models.",
+      "source_doc": "Resume1.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resume1.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 4
+    },
+    "339fbf90-4306-46d2-b029-3a7167a0f7b6": {
+      "text": "learning models.\n\u2022 Implemented a Logistic Regression model for text classification, achieving an accuracy of 94%.\nMultiple Disease Detection Web Application | Python, Machine Learning, Deep Learning Sep 2023\n\u2022 Developed a comprehensive web application for multi-disease prediction, targeting conditions such as Diabetes, Heart\nDisease, Kidney Disease, Breast Cancer, Liver Disease, Malaria, and Pneumonia.",
+      "source_doc": "Resume1.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resume1.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 5
+    },
+    "1c061691-a02a-40e5-8db0-016b2780e106": {
+      "text": "\u2022 Utilized various machine learning algorithms, including Logistic Regression, Decision Tree, SVM, KNN, Random Forest,\nand XGBoost, to optimize model performance and prediction accuracy.\n\u2022 Incorporated deep learning techniques, such as CNNs and pretrained models, to enhance disease detection capabilities.\nCertificates\nGenerative AI for Everyone, DeepLearning.AI May 2024\nData Analysis with Python, Jovian Jan 2024\nMachine Learning and Data Science Program, GeeksForGeeks Dec 2023",
+      "source_doc": "Resume1.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resume1.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 6
+    },
+    "36a07871-0818-4aae-923f-e4ebb0afc638": {
+      "text": "Introduction to Artificial Intelligence, Kaggle Nov 2023\nAchievements\nKaggle Notebook Master, ranking in the top 100 globally. Aug 2024\nCodeChef 3-star rating with a score of 1783. July 2024\nAchieved 58th rank globally in a CodeChef contest. June 2024\nEducation\nLovely Professional University Sep 2021 \u2013 July 2025\nBachelor of Technology in Data Science (Artificial Intelligence and Machine Learning) Phagwara, Punjab\nParamount Academy Muzaffarpur July 2018 \u2013 July 2020",
+      "source_doc": "Resume1.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resume1.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 7
+    },
+    "5a74f595-a7fe-4d8a-ab8b-b9aa52f79f52": {
+      "text": "Intermediate (PCM) Muzaffarpur, Bihar",
+      "source_doc": "Resume1.pdf",
+      "doc_path_at_indexing": "/Users/chanchalalam/Desktop/Assignment/backend/app/api/vectorDb/data/Resume1.pdf",
+      "doc_type": "pdf",
+      "chunk_num_in_doc": 8
+    }
+  }
+}
