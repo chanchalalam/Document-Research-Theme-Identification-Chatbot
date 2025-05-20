@@ -9,42 +9,18 @@ _backend_dir = os.path.dirname(_main_py_dir)
 
 if _backend_dir not in sys.path:
     sys.path.insert(0, _backend_dir)  
-try:
-    from app.api.vectorDb.database import (
-        DocumentChatService,
-        DEFAULT_DOCUMENTS_DIR,
-        DEFAULT_FAISS_INDEX_PATH,
-        DEFAULT_METADATA_PATH
-    )
-    SERVICE_IMPORTS_OK = True
-    print("INFO (main.py - Flask): Successfully imported DocumentChatService and path defaults.")
-except ImportError as e:
-    print(f"CRITICAL IMPORT ERROR in main.py: Could not import DocumentChatService. Details: {e}")
-    print(f"Current sys.path: {sys.path}")
-    class DummyChatService:
-        def __init__(self, *args, **kwargs): 
-            self.faiss_index = None
-            self.metadata = {}
-            self.groq_client = None
-            self.documents_dir = "dummy_docs_path"
-            print("ERROR (main.py - Flask): DummyChatService is being used due to import failure.")
-        def update_knowledge_base(self): 
-            print("ERROR (main.py - Flask): DummyChatService.update_knowledge_base called.")
-            pass
-        def process_query(self, *args, **kwargs): 
-            print("ERROR (main.py - Flask): DummyChatService.process_query called.")
-            return "Core service not available due to import error.", {}
-    DocumentChatService = DummyChatService # type: ignore
-    DEFAULT_DOCUMENTS_DIR = os.path.join(_main_py_dir, "api", "vectorDb", "dummy_docs")
-    DEFAULT_FAISS_INDEX_PATH = os.path.join(_main_py_dir, "api", "vectorDb", "dummy.faiss")
-    DEFAULT_METADATA_PATH = os.path.join(_main_py_dir, "api", "vectorDb", "dummy.json")
-    SERVICE_IMPORTS_OK = False
-    print("WARNING (main.py - Flask): Using dummy DocumentChatService and paths due to import error.")
 
+from app.api.vectorDb.database import (
+    DocumentChatService,
+    DEFAULT_DOCUMENTS_DIR,
+    DEFAULT_FAISS_INDEX_PATH,
+    DEFAULT_METADATA_PATH
+)
+SERVICE_IMPORTS_OK = True
+print("INFO (main.py - Flask): Successfully imported DocumentChatService and path defaults.")
 
 app = Flask(__name__, template_folder='templates')
 
-# TODO: check if
 app.secret_key = os.urandom(24) 
 
 doc_chat_service_instance: DocumentChatService | None = None
