@@ -26,6 +26,7 @@ app.secret_key = os.urandom(24)
 doc_chat_service_instance: DocumentChatService | None = None
 services_are_initialized_successfully = False
 
+# Initializes or rebuilds the core document chat service.
 def initialize_core_services(rebuild=False):
     global doc_chat_service_instance, services_are_initialized_successfully
     if not SERVICE_IMPORTS_OK:
@@ -36,6 +37,7 @@ def initialize_core_services(rebuild=False):
 
     print(f"FLASK_APP_INIT: Attempting to initialize DocumentChatService (rebuild={rebuild})...")
     try:
+        # Attempt to create main DocumentChatService.
         doc_chat_service_instance = DocumentChatService(
             documents_dir=DEFAULT_DOCUMENTS_DIR,
             faiss_index_path=DEFAULT_FAISS_INDEX_PATH,
@@ -55,6 +57,7 @@ def initialize_core_services(rebuild=False):
                  print(f"  HINT: The documents directory '{DEFAULT_DOCUMENTS_DIR}' appears empty and no/empty index was loaded. Add documents and use 'Re-Index'.")
 
 
+    # Handles errors during core service setup.
     except Exception as e:
         print(f"FLASK_APP_INIT: CRITICAL ERROR during DocumentChatService initialization: {e}")
         traceback.print_exc()
@@ -64,6 +67,7 @@ def initialize_core_services(rebuild=False):
 # Initialize services when the Flask app starts.
 initialize_core_services(rebuild=False)
 
+# Main route, displays the UI and document list.
 @app.route('/')
 def index():
     global doc_chat_service_instance, services_are_initialized_successfully
@@ -84,9 +88,11 @@ def index():
                            services_available=services_are_initialized_successfully,
                            documents=docs_in_index_list)
 
+# Handles file uploads from the user.
 @app.route('/upload', methods=['POST'])
 def upload_files():
     global doc_chat_service_instance
+    # Defines permissible file types for upload.
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'tiff', 'bmp'}
 
     def allowed_file(filename):
@@ -116,6 +122,7 @@ def upload_files():
     uploaded_count = 0
     had_upload_attempts = False
 
+    # Process each uploaded file.
     for file in files:
         if file and file.filename:
             had_upload_attempts = True
@@ -139,6 +146,7 @@ def upload_files():
     
     return redirect(url_for('index'))
 
+# Triggers re-indexing of all documents.
 @app.route('/reindex', methods=['POST'])
 def reindex_documents():
     global doc_chat_service_instance, services_are_initialized_successfully 
@@ -154,6 +162,7 @@ def reindex_documents():
         
     return redirect(url_for('index'))
 
+# Processes user queries against the document index.
 @app.route('/query', methods=['POST'])
 def query_documents():
     global doc_chat_service_instance, services_are_initialized_successfully
@@ -171,6 +180,7 @@ def query_documents():
         flash(query_error_message, "error")
     else:
         try:
+            # Get response from chat service.
             print(f"FLASK_APP: Processing query: '{query}'")
             llm_response_text, doc_key_mapping = doc_chat_service_instance.process_query(query)
             if llm_response_text is None and doc_key_mapping is None:
@@ -205,6 +215,7 @@ def query_documents():
                            query_error=query_error_message
                            )
 
+# Starts the Flask development server.
 if __name__ == '__main__':
     print(f"Flask app CWD: {os.getcwd()}")
     
@@ -213,4 +224,4 @@ if __name__ == '__main__':
       print(f"Attempting to use documents from (resolved): {os.path.abspath(DEFAULT_DOCUMENTS_DIR)}")
     else:
       print(f"Attempting to use DUMMY documents path (resolved): {os.path.abspath(DEFAULT_DOCUMENTS_DIR)}")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5001)
