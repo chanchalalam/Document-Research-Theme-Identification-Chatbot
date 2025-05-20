@@ -107,7 +107,7 @@
                                 <strong>Text:</strong> {{ result.text[:250] | striptags | escape }}...
                             </p>
                          {% endfor %}
-                    {% elif not query_error %} <!-- No LLM response and no raw results and no error means no results -->
+                    {% elif not query_error %} 
                         <p>No information found for your query.</p>
                     {% endif %}
                 </div>
