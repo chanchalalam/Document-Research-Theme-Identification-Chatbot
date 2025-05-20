@@ -8,9 +8,7 @@ _main_py_dir = os.path.dirname(os.path.realpath(__file__))
 _backend_dir = os.path.dirname(_main_py_dir) 
 
 if _backend_dir not in sys.path:
-    sys.path.insert(0, _backend_dir)
-
-# TODO: check if this try catch is needed, and remove if not
+    sys.path.insert(0, _backend_dir)  
 try:
     from app.api.vectorDb.database import (
         DocumentChatService,
@@ -28,7 +26,7 @@ except ImportError as e:
             self.faiss_index = None
             self.metadata = {}
             self.groq_client = None
-            self.documents_dir = "dummy_docs_path" # Provide a default for upload_folder
+            self.documents_dir = "dummy_docs_path"
             print("ERROR (main.py - Flask): DummyChatService is being used due to import failure.")
         def update_knowledge_base(self): 
             print("ERROR (main.py - Flask): DummyChatService.update_knowledge_base called.")
@@ -88,7 +86,7 @@ def initialize_core_services(rebuild=False):
         doc_chat_service_instance = DocumentChatService() # Fallback to dummy on critical error
 
 # Initialize services when the Flask app starts.
-initialize_core_services(rebuild=False) # Initial load, don't rebuild unless explicitly told (e.g. via /reindex)
+initialize_core_services(rebuild=False)
 
 @app.route('/')
 def index():
@@ -127,7 +125,7 @@ def upload_files():
         return redirect(url_for('index'))
 
     files = request.files.getlist('files[]')
-    if not files or (len(files) == 1 and files[0].filename == ''): # Check if list is empty or only contains an empty file part
+    if not files or (len(files) == 1 and files[0].filename == ''):
         flash('No files selected for upload.', 'info')
         return redirect(url_for('index'))
 
@@ -143,7 +141,7 @@ def upload_files():
     had_upload_attempts = False
 
     for file in files:
-        if file and file.filename: # Ensure file object and filename exist
+        if file and file.filename:
             had_upload_attempts = True
             if allowed_file(file.filename): 
                 filename = secure_filename(file.filename) 
@@ -160,9 +158,8 @@ def upload_files():
     
     if uploaded_count > 0:
         flash(f'{uploaded_count} file(s) uploaded to "{os.path.basename(upload_folder)}". Please use "Re-Index" for them to be included in search.', 'success')
-    elif had_upload_attempts: # Files were selected, but none were valid/saved
+    elif had_upload_attempts:
         flash('No files were successfully uploaded due to type restrictions or save errors.', 'info')
-    # If !had_upload_attempts, means files list was empty or all filenames were empty, covered by earlier check (files[0].filename == '').
     
     return redirect(url_for('index'))
 
@@ -172,7 +169,6 @@ def reindex_documents():
     flash("Re-indexing process started... This may take a moment.", "info")
     print("FLASK_APP: User triggered Re-indexing documents...")
     
-    # Call initialize_core_services with rebuild=True
     initialize_core_services(rebuild=True)
     
     if services_are_initialized_successfully and doc_chat_service_instance and hasattr(doc_chat_service_instance.faiss_index, 'ntotal'):
@@ -201,11 +197,11 @@ def query_documents():
         try:
             print(f"FLASK_APP: Processing query: '{query}'")
             llm_response_text, doc_key_mapping = doc_chat_service_instance.process_query(query)
-            if llm_response_text is None and doc_key_mapping is None: # Explicit check if process_query can return this
+            if llm_response_text is None and doc_key_mapping is None:
                 query_error_message = "Query processed but no response or references were generated."
             elif not llm_response_text and doc_key_mapping is not None: 
                 query_error_message = "Could not get a synthesized response, but some documents were found."
-            # If llm_response_text has content (even "no relevant documents found"), it's a valid response.
+
         except Exception as e:
             flash(f"Error processing your query: {e}", "error")
             print(f"FLASK_APP: Error processing query '{query}': {e}")
@@ -235,10 +231,10 @@ def query_documents():
 
 if __name__ == '__main__':
     print(f"Flask app CWD: {os.getcwd()}")
-    # Template folder is relative to app object creation, which is this file's location.
+    
     print(f"Flask app template folder (resolved): {os.path.abspath(app.template_folder)}")
     if SERVICE_IMPORTS_OK:
       print(f"Attempting to use documents from (resolved): {os.path.abspath(DEFAULT_DOCUMENTS_DIR)}")
     else:
       print(f"Attempting to use DUMMY documents path (resolved): {os.path.abspath(DEFAULT_DOCUMENTS_DIR)}")
-    app.run(debug=True, host='0.0.0.0', port=5000) # Standard port for Docker/deployment 
+    app.run(debug=True, host='0.0.0.0', port=5000)
