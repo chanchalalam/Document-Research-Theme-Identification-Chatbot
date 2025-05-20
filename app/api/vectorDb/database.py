@@ -4,7 +4,7 @@ import os
 from PIL import Image
 import pytesseract
 from sentence_transformers import SentenceTransformer
-from langchain.text_splitter import RecursiveCharacterTextSplitter # If you use it
+from langchain.text_splitter import RecursiveCharacterTextSplitter 
 import json
 import time
 import uuid
@@ -13,10 +13,10 @@ from pypdf import PdfReader
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# --- Relative Import Setup for LLM Service ---
+# Setup for LLM Service 
 import sys
-_current_script_dir = os.path.dirname(os.path.realpath(__file__)) # .../api/vectorDb/
-_app_dir = os.path.abspath(os.path.join(_current_script_dir, "..", "..")) # Should be 'ASSIGNMENT/backend/app/'
+_current_script_dir = os.path.dirname(os.path.realpath(__file__))
+_app_dir = os.path.abspath(os.path.join(_current_script_dir, "..", "..")) 
 
 if _app_dir not in sys.path:
     sys.path.insert(0, _app_dir)
@@ -34,21 +34,19 @@ except ImportError as e:
         print("DEBUG (database.py): get_llm_synthesis_with_citations (dummy) called.")
         return "LLM Service Not Available due to import error.", {}
     LLM_SERVICE_AVAILABLE = False
-# --- End of Relative Import Setup ---
 
 
-# --- 0. Configuration (Path for documents_dir corrected) ---
+#Configuration
 SCRIPT_DIR_FOR_PATHS = os.path.dirname(os.path.realpath(__file__))
 
-# --- MODIFICATION HERE: Pointing to .../vectorDb/data/ ---
+# MODIFICATION
 DEFAULT_DOCUMENTS_DIR = os.path.join(SCRIPT_DIR_FOR_PATHS, "data")
-# --- END OF MODIFICATION ---
 
 DEFAULT_FAISS_INDEX_PATH = os.path.join(SCRIPT_DIR_FOR_PATHS, "document_index.faiss")
 DEFAULT_METADATA_PATH = os.path.join(SCRIPT_DIR_FOR_PATHS, "document_metadata.json")
 MODEL_NAME = 'all-MiniLM-L6-v2'
 
-# --- 1. Helper Functions for Document Processing ---
+# Helper Functions for Document Processing
 def extract_text_from_pdf_pypdf(pdf_path: str) -> str:
     text = ""
     try:
@@ -107,7 +105,7 @@ def get_text_splitter(chunk_size=500, chunk_overlap=50):
         add_start_index=False
     )
 
-# --- 2. Indexing and Updating Documents ---
+# Indexing and Updating Documents 
 def process_and_update_index(docs_dir, embedding_model, text_splitter,
                              faiss_index_path, metadata_path,
                              current_index=None, current_metadata=None):
@@ -129,7 +127,7 @@ def process_and_update_index(docs_dir, embedding_model, text_splitter,
 
     for root, _, files in os.walk(docs_dir):
         for file_name in files:
-            if not file_name.startswith('.'): # Skip hidden files
+            if not file_name.startswith('.'): 
                 doc_filepaths.append(os.path.join(root, file_name))
 
     if not doc_filepaths:
@@ -196,10 +194,10 @@ def process_and_update_index(docs_dir, embedding_model, text_splitter,
     print(f"INFO (process_and_update_index): Indexing complete. Total vectors: {index_to_update.ntotal}. Added {len(new_chunks_text_this_run)} new chunks from {processed_files_this_run_count} files.")
     return index_to_update, final_metadata_to_save
 
-# --- 3. Loading Index and Metadata ---
+# Loading Index and Metadata
 def load_existing_index_and_metadata(faiss_index_path, metadata_path):
-    print(f"DEBUG (load_existing_index_and_metadata): Received faiss_index_path = {faiss_index_path}") # DEBUG PRINT
-    print(f"DEBUG (load_existing_index_and_metadata): Received metadata_path = {metadata_path}") # DEBUG PRINT
+    print(f"DEBUG (load_existing_index_and_metadata): Received faiss_index_path = {faiss_index_path}")
+    print(f"DEBUG (load_existing_index_and_metadata): Received metadata_path = {metadata_path}")
     loaded_index, loaded_metadata = None, {"chunk_ids_list": [], "metadata_store": {}}
     if os.path.exists(faiss_index_path):
         try:
@@ -239,7 +237,7 @@ def load_existing_index_and_metadata(faiss_index_path, metadata_path):
         print(f"INFO (load_existing_index_and_metadata): Metadata file not found at '{metadata_path}'.")
     return loaded_index, loaded_metadata
 
-# --- 4. Querying (FAISS search) ---
+#  Querying (FAISS search)
 def search_documents(query_text, index, metadata_payload, embedding_model, k=3):
     if index is None or (hasattr(index, 'ntotal') and index.ntotal == 0): return []
     if not hasattr(embedding_model, 'encode'): return []
@@ -264,7 +262,7 @@ def search_documents(query_text, index, metadata_payload, embedding_model, k=3):
             results.append({"score": score, "distance": current_distance, "chunk_id": actual_chunk_id, "faiss_id": int(faiss_id), **chunk_meta})
     return results
 
-# --- 5. Chatbot Service Logic ---
+# Chatbot Service Logic 
 class DocumentChatService:
     def __init__(self, documents_dir=DEFAULT_DOCUMENTS_DIR,
                  faiss_index_path=DEFAULT_FAISS_INDEX_PATH,
@@ -342,24 +340,23 @@ class DocumentChatService:
                 doc_map[ref_label] = f"{chunk.get('source_doc')} (Chunk {chunk.get('chunk_num_in_doc')})"
             return response_text, doc_map
 
-# --- 6. Example Usage for Chatbot Backend (Test Harness) ---
+# Example of Chatbot Test
 if __name__ == '__main__':
     print("--- Document Chat Service Test (Adhering to specified paths) ---")
 
-    print(f"Service will use Documents Directory: '{DEFAULT_DOCUMENTS_DIR}'") # This now points to .../vectorDb/data/
+    print(f"Service will use Documents Directory: '{DEFAULT_DOCUMENTS_DIR}'") 
     print(f"Service will use FAISS Index: '{DEFAULT_FAISS_INDEX_PATH}'")
     print(f"Service will use Metadata: '{DEFAULT_METADATA_PATH}'")
     print(f"Ensure your .env file is at: '{os.path.join(SCRIPT_DIR_FOR_PATHS, '.env')}' (for llm_service.py)")
 
-    # Ensure the documents directory exists (DocumentChatService __init__ also does this)
     if not os.path.exists(DEFAULT_DOCUMENTS_DIR):
         print(f"WARNING: The documents directory '{DEFAULT_DOCUMENTS_DIR}' does not exist. Creating it now.")
         os.makedirs(DEFAULT_DOCUMENTS_DIR, exist_ok=True)
     print(f"Please add your sample documents (PDFs, TXTs) to '{DEFAULT_DOCUMENTS_DIR}'.")
 
 
-    should_rebuild_index_for_test = True # SET THIS TO TRUE FOR THE NEXT RUN
-                                         # Set to False for subsequent runs if index is good
+    should_rebuild_index_for_test = True 
+                                         
 
     chat_service_instance = DocumentChatService(
         documents_dir=DEFAULT_DOCUMENTS_DIR,
