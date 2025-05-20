@@ -1,18 +1,16 @@
 import os
 import sys
 from flask import Flask, render_template, request, redirect, url_for, flash
-from werkzeug.utils import secure_filename # For secure file uploads
+from werkzeug.utils import secure_filename
 import traceback
 
-# --- Add project root to Python path for imports ---
-_main_py_dir = os.path.dirname(os.path.realpath(__file__)) # .../backend/app/
-_backend_dir = os.path.dirname(_main_py_dir) # .../backend/
+_main_py_dir = os.path.dirname(os.path.realpath(__file__)) 
+_backend_dir = os.path.dirname(_main_py_dir) 
 
-# Add 'backend' to sys.path to allow 'from app.api...'
 if _backend_dir not in sys.path:
     sys.path.insert(0, _backend_dir)
 
-# Attempt to import the DocumentChatService and its defaults
+# TODO: check if this try catch is needed, and remove if not
 try:
     from app.api.vectorDb.database import (
         DocumentChatService,
@@ -25,7 +23,6 @@ try:
 except ImportError as e:
     print(f"CRITICAL IMPORT ERROR in main.py: Could not import DocumentChatService. Details: {e}")
     print(f"Current sys.path: {sys.path}")
-    # Define dummy service and paths if import fails, so app can at least start to show an error
     class DummyChatService:
         def __init__(self, *args, **kwargs): 
             self.faiss_index = None
@@ -47,10 +44,11 @@ except ImportError as e:
     print("WARNING (main.py - Flask): Using dummy DocumentChatService and paths due to import error.")
 
 
-app = Flask(__name__, template_folder='templates') # Assumes 'templates' folder is sibling to main.py
-app.secret_key = os.urandom(24) # Good practice for session security
+app = Flask(__name__, template_folder='templates')
 
-# --- Global Chat Service Instance & Status ---
+# TODO: check if
+app.secret_key = os.urandom(24) 
+
 doc_chat_service_instance: DocumentChatService | None = None
 services_are_initialized_successfully = False
 
