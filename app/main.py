@@ -59,7 +59,7 @@ def initialize_core_services(rebuild=False):
         print(f"FLASK_APP_INIT: CRITICAL ERROR during DocumentChatService initialization: {e}")
         traceback.print_exc()
         services_are_initialized_successfully = False
-        doc_chat_service_instance = DocumentChatService() # Fallback to dummy on critical error
+        doc_chat_service_instance = DocumentChatService()
 
 # Initialize services when the Flask app starts.
 initialize_core_services(rebuild=False)
