@@ -4,9 +4,8 @@ RUN apt-get update && apt-get install -y tesseract-ocr libtesseract-dev poppler-
 
 WORKDIR /usr/src/app
 
-# Argument for Groq API Key (to be passed during docker build)
 ARG GROQ_API_KEY
-# Set Groq API Key as an environment variable in the container
+
 ENV GROQ_API_KEY=${GROQ_API_KEY}
 
 COPY requirements.txt ./
