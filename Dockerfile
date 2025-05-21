@@ -1,7 +1,5 @@
-# 1. Base Image
 FROM python:3.10-slim
 
-# Install Tesseract OCR and other system dependencies
 RUN apt-get update && apt-get install -y tesseract-ocr libtesseract-dev poppler-utils && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app

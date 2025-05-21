@@ -222,4 +222,4 @@ if __name__ == '__main__':
       print(f"Attempting to use documents from (resolved): {os.path.abspath(DEFAULT_DOCUMENTS_DIR)}")
     else:
       print(f"Attempting to use DUMMY documents path (resolved): {os.path.abspath(DEFAULT_DOCUMENTS_DIR)}")
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    app.run(debug=True, host='0.0.0.0', port=5000)
