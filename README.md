@@ -36,16 +36,16 @@ provide detailed, cited responses to user queries.
 .
 ├── backend
 │   ├── app
-│   │   ├── api/            # Core processing and business logic
-│   │   ├── core/           # Setup logic
-│   │   ├── services/       # GROQ LLM Configuration
-│   │   ├── templates/      # Templates-Index.html
-│   │   ├── main.py         # FastAPI entry point
-│   │   └── .env            # Environment variables
-│   ├── Dockerfile          # Docker configuration
-│   └── requirements.txt    # Python dependencies
-├── data/                   # Uploaded document files
-├── README.md               # Project documentation
+│   │   ├── api/            
+│   │   ├── core/           
+│   │   ├── services/       
+│   │   ├── templates/      
+│   │   ├── main.py         
+│   │   └── .env            
+│   ├── Dockerfile          
+│   └── requirements.txt    
+├── data/                   
+├── README.md               
 ```
 
 ---
@@ -55,8 +55,8 @@ provide detailed, cited responses to user queries.
 ### 1. Clone the repository:
 
 ```bash
-git clone <repository_url>
-cd <repository_name>
+git clone https://github.com/chanchalalam/wasserstoff-AiInternTask/
+cd wasserstoff-AiInternTask
 ```
 
 ### 2. Set your Groq API Key:
