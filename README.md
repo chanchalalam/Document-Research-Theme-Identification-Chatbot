@@ -1,10 +1,12 @@
 # 📄 Document Research & Theme Identification Chatbot
 
-This project is an interactive chatbot that can perform research across a large set of documents (minimum 75 documents), identify common themes (multiple themes are possible), and provide detailed, cited responses to user queries.
+This project is an interactive chatbot that can perform research across a large set of documents
+(minimum 75 documents), identify common themes (multiple themes are possible), and
+provide detailed, cited responses to user queries.
 
 ---
 
-## ✅ Features
+## Features
 
 * **Multi-Format Document Processing:** Supports PDFs, text files, and image documents.
 * **OCR Integration:** Uses Tesseract OCR to extract text from images or scanned PDFs.
@@ -16,7 +18,7 @@ This project is an interactive chatbot that can perform research across a large 
 
 ## ⚙️ Tech Stack
 
-| LayerTechnology |                                 |
+| Layer           | Technology                      |
 | --------------- | ------------------------------- |
 | Language        | Python 3.10                     |
 | Web Framework   | FastAPI                         |
@@ -31,59 +33,53 @@ This project is an interactive chatbot that can perform research across a large 
 ## 📁 Project Structure
 
 ```
-bash
+.
+├── backend
+│   ├── app
+│   │   ├── api/            # API routes
+│   │   ├── core/           # Configuration and setup logic
+│   │   ├── services/       # Core processing and business logic
+│   │   ├── templates/      # Templates (if any)
+│   │   ├── main.py         # FastAPI entry point
+│   │   └── .env            # Environment variables
+│   ├── Dockerfile          # Docker configuration
+│   └── requirements.txt    # Python dependencies
+├── data/                   # Sample or uploaded document files
+├── README.md               # Project documentation
 ```
-
-CopyEdit
-
-`├── backend │ ├── app │ │ ├── api/ │ │ ├── core/ │ │ ├── services/ │ │ ├── main.py │ │ ├── templates/ │ │ └── .env │ ├── Dockerfile │ └── requirements.txt ├── data/ ├── README.md`
 
 ---
 
 ## 🐳 Running with Docker
 
-### 1. Clone the repository
+### 1. Clone the repository:
 
+```bash
+git clone <repository_url>
+cd <repository_name>
 ```
-bash
-```
 
-CopyEdit
-
-`git clone <repository_url> cd <repository_name>`
-
-### 2. Set your Groq API Key
+### 2. Set your Groq API Key:
 
 Create a `.env` file in the root:
 
 ```
-ini
+GROQ_API_KEY=your_groq_api_key_here
 ```
-
-CopyEdit
-
-`GROQ_API_KEY=your_groq_api_key_here`
 
 Ensure `.env` is in your `.gitignore`.
 
-### 3. Build Docker image
+### 3. Build Docker image:
 
-```
-bash
-```
-
-CopyEdit
-
-`docker build --build-arg GROQ_API_KEY=$(grep GROQ_API_KEY .env | cut -d '=' -f2) -t document-qa-backend .`
-
-### 4. Run the Docker container
-
-```
-bash
+```bash
+docker build --build-arg GROQ_API_KEY=$(grep GROQ_API_KEY .env | cut -d '=' -f2) -t document-qa-backend .
 ```
 
-CopyEdit
+### 4. Run the Docker container:
 
-`docker run -d -p 5000:5000 --name docqa document-qa-backend`
+```bash
+docker run -d -p 5000:5000 --name docqa document-qa-backend
+```
 
 Visit the app at: [http://localhost:5000](http://localhost:5000)
+
