@@ -6,12 +6,11 @@ This project is a Python-powered backend system that allows users to upload and 
 
 ## 🚀 Features
 
-* **📄 Multi-Format Document Processing:** Supports PDFs, text files, and image documents.
-* **🔍 OCR Integration:** Uses Tesseract OCR to extract text from images or scanned PDFs.
-* **🧠 LLM (Groq) Integration:** Connects to the Groq API to enable generative capabilities like answering questions and summarization.
-* **🗃️ Vector Search with FAISS:** Embeds documents using Sentence Transformers and stores them in FAISS for efficient similarity-based querying.
-* **📡 API Interface (FastAPI):** Exposes endpoints to upload, query, and fetch summaries.
-* **🗂 MongoDB for Metadata:** All associated metadata for each document and user interaction is stored in MongoDB.
+* ** Multi-Format Document Processing:** Supports PDFs, text files, and image documents.
+* ** OCR Integration:** Uses Tesseract OCR to extract text from images or scanned PDFs.
+* ** LLM (Groq) Integration:** Connects to the Groq API to enable generative capabilities like answering questions and summarization.
+* ** Vector Search with FAISS:** Embeds documents using Sentence Transformers and stores them in FAISS for efficient similarity-based querying.
+* ** API Interface (FastAPI):** Exposes endpoints to upload, query, and fetch summaries.
 
 ---
 
@@ -25,35 +24,22 @@ This project is a Python-powered backend system that allows users to upload and 
 | LLM             | Groq API                                |
 | NLP / Embedding | SentenceTransformers, LangChain         |
 | Vector DB       | FAISS                                   |
-| Database        | MongoDB                                 |
-| Deployment      | Docker, Hugging Face (for Streamlit UI) |
+| Deployment      | Docker, Hugging Face                    |
 
 ---
-
 ## 📁 Project Structure
-
-```
-.
 ├── backend
 │   ├── app
-│   │   ├── api/         # API route definitions
-│   │   ├── core/        # App configuration and utilities
-│   │   ├── services/    # Business logic (OCR, FAISS, Groq)
-│   │   ├── models/      # Data & Pydantic models
-│   │   ├── main.py      # FastAPI entry point
-│   │   └── config.py    # App settings and secrets
-│   ├── Dockerfile       # Docker setup
-│   └── requirements.txt # All dependencies
-├── frontend
-│   ├── app.py           # Streamlit frontend app
-│   └── utils/           # Helper utilities for UI
-├── data/                # Folder to store documents
-├── demo/                # Examples and demonstration files
-├── tests/               # Test cases
-├── README.md            # Project documentation
+│   │   ├── api/        
+│   │   ├── core/        
+│   │   ├── services/    
+│   │   ├── main.py      
+│   │   └── .env         
+│   ├── Dockerfile       
+│   └── requirements.txt 
+├── data/                
+├── README.md           
 ```
-
----
 
 ## 🐳 Running with Docker
 
