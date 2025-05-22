@@ -36,15 +36,15 @@ provide detailed, cited responses to user queries.
 .
 ├── backend
 │   ├── app
-│   │   ├── api/            # API routes
-│   │   ├── core/           # Configuration and setup logic
-│   │   ├── services/       # Core processing and business logic
-│   │   ├── templates/      # Templates (if any)
+│   │   ├── api/            # Core processing and business logic
+│   │   ├── core/           # Setup logic
+│   │   ├── services/       # GROQ LLM Configuration
+│   │   ├── templates/      # Templates-Index.html
 │   │   ├── main.py         # FastAPI entry point
 │   │   └── .env            # Environment variables
 │   ├── Dockerfile          # Docker configuration
 │   └── requirements.txt    # Python dependencies
-├── data/                   # Sample or uploaded document files
+├── data/                   # Uploaded document files
 ├── README.md               # Project documentation
 ```
 
