@@ -48,4 +48,8 @@ Ensure .env is in your .gitignore.
 docker build --build-arg GROQ_API_KEY=$(grep GROQ_API_KEY .env | cut -d '=' -f2) -t document-qa-backend .
 4. Run the Docker container
 docker run -d -p 5000:5000 --name docqa document-qa-backend
+<<<<<<< HEAD
 Visit the app at: http://localhost:5000 
+=======
+Visit the app at: http://localhost:5000 
+>>>>>>> 6ff4608b10d6c1f346a0181e96281af9e331720f
