@@ -12,7 +12,7 @@ provide detailed, cited responses to user queries.
 * **OCR Integration:** Uses Tesseract OCR to extract text from images or scanned PDFs.
 * **LLM (Groq) Integration:** Connects to the Groq API to enable generative capabilities like answering questions.
 * **Vector Search with FAISS:** Embeds documents using Sentence Transformers and stores them in FAISS for efficient similarity-based querying.
-* **API Interface (FastAPI):** Exposes endpoints to upload, query, and fetch summaries.
+* **API Interface (Flask):** Exposes endpoints to upload, query, and fetch summaries.
 
 ---
 
@@ -21,7 +21,7 @@ provide detailed, cited responses to user queries.
 | Layer           | Technology                      |
 | --------------- | ------------------------------- |
 | Language        | Python 3.10                     |
-| Web Framework   | FastAPI                         |
+| Web Framework   | Flask                        |
 | OCR Engine      | Tesseract + pytesseract         |
 | LLM             | Groq API                        |
 | NLP / Embedding | SentenceTransformers, LangChain |
