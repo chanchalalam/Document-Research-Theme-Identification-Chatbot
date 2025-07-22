@@ -55,8 +55,8 @@ provide detailed, cited responses to user queries.
 ### 1. Clone the repository:
 
 ```bash
-git clone https://github.com/chanchalalam/wasserstoff-AiInternTask/
-cd wasserstoff-AiInternTask
+git clone https://github.com/chanchalalamproject 
+cdproject 
 ```
 
 ### 2. Set your Groq API Key:
